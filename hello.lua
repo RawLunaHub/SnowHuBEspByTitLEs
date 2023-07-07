@@ -1,7 +1,6 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-task.wait(0.3)
 local Player = game:GetService("Players").LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
 local UserInputService = game:GetService("UserInputService")
