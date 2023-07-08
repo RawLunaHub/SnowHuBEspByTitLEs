@@ -10,6 +10,7 @@ if not LPH_OBFUSCATED then
   getgenv().NextStep = function(...) return end;
   getgenv().MaxChecks = 0;
 end
+LPH_JIT_ULTRA = LPH_JIT_ULTRA or function(...) return ... end
 local Player = game:GetService("Players").LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
 local UserInputService = game:GetService("UserInputService")
