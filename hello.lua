@@ -28,7 +28,7 @@ end
 
 
 function GetPartCorners(Part)
-    Size = Part.Size * Vector3.new(1, 1.5)
+    local Size = Part.Size * Vector3.new(1, 1.5)
     return {
         TR = (Part.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).Position,
         BR = (Part.CFrame * CFrame.new(-Size.X, Size.Y, 0)).Position,
@@ -62,7 +62,7 @@ function DrawESP(plr)
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
-                Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
+                local Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
                 local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character.Head.Position)
 
 
