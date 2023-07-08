@@ -58,7 +58,7 @@ function DrawESP(plr)
     highlight.Enabled = getgenv().cham
     local folder = Instance.new("Folder", game:GetService("CoreGui"))
     highlight.Parent = folder
-    local function Update()
+    function Update()
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
