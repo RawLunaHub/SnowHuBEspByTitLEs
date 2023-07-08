@@ -37,7 +37,7 @@ local function GetPartCorners(Part)
     }
 end
 
-local function DrawESP(plr)
+function DrawESP(plr)
     local Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
