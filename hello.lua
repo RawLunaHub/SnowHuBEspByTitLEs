@@ -18,16 +18,16 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
 end
 
 
-function CycleFont()
+local function CycleFont()
     if FontValue + 1 > 3 then
-       local FontValue = 1
+       FontValue = 1
     else
         FontValue = FontValue + 1
     end
 end
 
 
-function GetPartCorners(Part)
+local function GetPartCorners(Part)
     local Size = Part.Size * Vector3.new(1, 1.5)
     return {
         TR = (Part.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).Position,
@@ -37,7 +37,8 @@ function GetPartCorners(Part)
     }
 end
 
-function DrawESP(plr)
+local function DrawESP(plr)
+    task.wait(0.1)
     local Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
@@ -49,7 +50,7 @@ function DrawESP(plr)
     Box.PointB = Vector2.new(0, 0)
     Box.PointC = Vector2.new(0, 0)
     Box.PointD = Vector2.new(0, 0)
-    Box.Color = Color3.fromRGB(255, 255, 255)
+    Box.Color = Color3.fromRGB(250, 250, 5)
     Box.Thickness = 2
     Box.Transparency = 1
     local highlight = Instance.new("Highlight")
@@ -58,7 +59,7 @@ function DrawESP(plr)
     highlight.Enabled = getgenv().cham
     local folder = Instance.new("Folder", game:GetService("CoreGui"))
     highlight.Parent = folder
-    function Update()
+    local function Update()
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
@@ -96,7 +97,7 @@ function DrawESP(plr)
                 
                 Name.Text = string.format(plr.Name.." ["..tostring(math.floor(Distance*0.28)).."m]")
                  
-                PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
+                local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
                 local VectorBR, OnScreenBR = Camera:WorldToScreenPoint(PartCorners.BR)
                 local VectorTL, OnScreenTL = Camera:WorldToScreenPoint(PartCorners.TL)
@@ -134,20 +135,19 @@ end
 
 for _,v in pairs(game:GetService("Players"):GetChildren()) do
     if v.Name ~= Player.Name then
-        task.wait(0.2)
+        task.wait(0.1)
         DrawESP(v)
     end
 end
 
 game:GetService("Players").PlayerAdded:Connect(function(v)
-    task.wait(0.2)
+    task.wait(0.1)
     DrawESP(v)
 end)
 
 
 UserInputService.InputBegan:Connect(function(Input, GP)
     if not GP and Input.KeyCode == Enum.KeyCode.Delete then
-        wait(0.01)
         getgenv().Visibility = not getgenv().Visibility
     end 
     
@@ -155,7 +155,6 @@ UserInputService.InputBegan:Connect(function(Input, GP)
         CycleFont()
     end
     if not GP and Input.KeyCode == Enum.KeyCode.Home then
-        task.wait()
         getgenv().useTeamColor = not getgenv().useTeamColor
     end
 end)
