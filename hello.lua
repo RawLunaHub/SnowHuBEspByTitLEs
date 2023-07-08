@@ -1,12 +1,12 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-Player = game:GetService("Players").LocalPlayer
-Camera = game:GetService("Workspace").CurrentCamera
-UserInputService = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+local Camera = game:GetService("Workspace").CurrentCamera
+local UserInputService = game:GetService("UserInputService")
 
 getgenv().useTeamColor = false
-FontValue = 1
+local FontValue = 1
 if not getgenv().Visibility then
     getgenv().Visibility = false
 end
@@ -20,7 +20,7 @@ end
 
 function CycleFont()
     if FontValue + 1 > 3 then
-       FontValue = 1
+       local FontValue = 1
     else
         FontValue = FontValue + 1
     end
@@ -37,13 +37,13 @@ function GetPartCorners(Part)
     }
 end
 
-function DrawESP(plr)
-    Name = Drawing.new("Text")
+localfunction DrawESP(plr)
+    local Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
     Name.Outline = true
     Name.Transparency = 1
-    Box = Drawing.new("Quad")
+    local Box = Drawing.new("Quad")
     Box.Visible = false
     Box.PointA = Vector2.new(0, 0)
     Box.PointB = Vector2.new(0, 0)
@@ -52,11 +52,11 @@ function DrawESP(plr)
     Box.Color = Color3.fromRGB(255, 255, 255)
     Box.Thickness = 2
     Box.Transparency = 1
-    highlight = Instance.new("Highlight")
+    local highlight = Instance.new("Highlight")
     
     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     highlight.Enabled = getgenv().cham
-    folder = Instance.new("Folder", game:GetService("CoreGui"))
+    local folder = Instance.new("Folder", game:GetService("CoreGui"))
     highlight.Parent = folder
     function Update()
         local c
