@@ -1,12 +1,12 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-local Player = game:GetService("Players").LocalPlayer
-local Camera = game:GetService("Workspace").CurrentCamera
-local UserInputService = game:GetService("UserInputService")
+Player = game:GetService("Players").LocalPlayer
+Camera = game:GetService("Workspace").CurrentCamera
+UserInputService = game:GetService("UserInputService")
 
 getgenv().useTeamColor = false
-local FontValue = 1
+FontValue = 1
 if not getgenv().Visibility then
     getgenv().Visibility = false
 end
@@ -18,7 +18,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
 end
 
 
-local function CycleFont()
+function CycleFont()
     if FontValue + 1 > 3 then
        FontValue = 1
     else
@@ -27,8 +27,8 @@ local function CycleFont()
 end
 
 
-local function GetPartCorners(Part)
-    local Size = Part.Size * Vector3.new(1, 1.5)
+function GetPartCorners(Part)
+    Size = Part.Size * Vector3.new(1, 1.5)
     return {
         TR = (Part.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).Position,
         BR = (Part.CFrame * CFrame.new(-Size.X, Size.Y, 0)).Position,
@@ -38,12 +38,12 @@ local function GetPartCorners(Part)
 end
 
 function DrawESP(plr)
-    local Name = Drawing.new("Text")
+    Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
     Name.Outline = true
     Name.Transparency = 1
-    local Box = Drawing.new("Quad")
+    Box = Drawing.new("Quad")
     Box.Visible = false
     Box.PointA = Vector2.new(0, 0)
     Box.PointB = Vector2.new(0, 0)
@@ -52,17 +52,17 @@ function DrawESP(plr)
     Box.Color = Color3.fromRGB(255, 255, 255)
     Box.Thickness = 2
     Box.Transparency = 1
-    local highlight = Instance.new("Highlight")
+    highlight = Instance.new("Highlight")
     
     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     highlight.Enabled = getgenv().cham
-    local folder = Instance.new("Folder", game:GetService("CoreGui"))
+    folder = Instance.new("Folder", game:GetService("CoreGui"))
     highlight.Parent = folder
     function Update()
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
-                local Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
+                Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
                 local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character.Head.Position)
 
 
@@ -96,7 +96,7 @@ function DrawESP(plr)
                 
                 Name.Text = string.format(plr.Name.." ["..tostring(math.floor(Distance*0.28)).."m]")
                  
-                local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
+                PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
                 local VectorBR, OnScreenBR = Camera:WorldToScreenPoint(PartCorners.BR)
                 local VectorTL, OnScreenTL = Camera:WorldToScreenPoint(PartCorners.TL)
