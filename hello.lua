@@ -18,7 +18,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
 end
 
 
-function CycleFont()
+local function CycleFont()
     if FontValue + 1 > 3 then
        FontValue = 1
     else
@@ -27,7 +27,7 @@ function CycleFont()
 end
 
 
-function GetPartCorners(Part)
+local function GetPartCorners(Part)
     local Size = Part.Size * Vector3.new(1, 1.5)
     return {
         TR = (Part.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).Position,
@@ -37,7 +37,7 @@ function GetPartCorners(Part)
     }
 end
 
-function DrawESP(plr)
+local function DrawESP(plr)
     task.wait(0.1)
     local Name = Drawing.new("Text")
     Name.Center = true
