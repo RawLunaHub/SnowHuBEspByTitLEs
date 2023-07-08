@@ -26,7 +26,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().boxESP = false
 end
 
-LPH_NO_VIRTUALIZE(function()
+
 local function CycleFont()
     if FontValue + 1 > 3 then
        FontValue = 1
@@ -166,5 +166,4 @@ UserInputService.InputBegan:Connect(function(Input, GP)
     if not GP and Input.KeyCode == Enum.KeyCode.Home then
         getgenv().useTeamColor = not getgenv().useTeamColor
     end
-end)
 end)
