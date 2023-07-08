@@ -1,6 +1,15 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
+if not LPH_OBFUSCATED then
+  function LPH_NO_VIRTUALIZE(...) return ... end;
+  function LPH_CRASH() return end;
+  function LPH_ENCSTR(...) return ... end;
+  lgVarsTbl = {hoursRemaining = 0}
+ 
+  getgenv().NextStep = function(...) return end;
+  getgenv().MaxChecks = 0;
+end
 local Player = game:GetService("Players").LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
 local UserInputService = game:GetService("UserInputService")
@@ -17,7 +26,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().boxESP = false
 end
 
-
+LPH_NO_VIRTUALIZE(function()
 local function CycleFont()
     if FontValue + 1 > 3 then
        FontValue = 1
@@ -157,4 +166,5 @@ UserInputService.InputBegan:Connect(function(Input, GP)
     if not GP and Input.KeyCode == Enum.KeyCode.Home then
         getgenv().useTeamColor = not getgenv().useTeamColor
     end
+end)
 end)
