@@ -1,7 +1,6 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-
 local Player = game:GetService("Players").LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
 local UserInputService = game:GetService("UserInputService")
@@ -39,7 +38,6 @@ local function GetPartCorners(Part)
 end
 
 local function DrawESP(plr)
-    task.wait(0.1)
     local Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
@@ -51,11 +49,11 @@ local function DrawESP(plr)
     Box.PointB = Vector2.new(0, 0)
     Box.PointC = Vector2.new(0, 0)
     Box.PointD = Vector2.new(0, 0)
-    Box.Color = Color3.fromRGB(250, 250, 5)
+    Box.Color = Color3.fromRGB(255, 255, 255)
     Box.Thickness = 2
     Box.Transparency = 1
     local highlight = Instance.new("Highlight")
-    
+
     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     highlight.Enabled = getgenv().cham
     local folder = Instance.new("Folder", game:GetService("CoreGui"))
@@ -95,15 +93,15 @@ local function DrawESP(plr)
                 else
                     Name.Visible = false 
                 end
-                
+
                 Name.Text = string.format(plr.Name.." ["..tostring(math.floor(Distance*0.28)).."m]")
-                 
+
                 local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
                 local VectorBR, OnScreenBR = Camera:WorldToScreenPoint(PartCorners.BR)
                 local VectorTL, OnScreenTL = Camera:WorldToScreenPoint(PartCorners.TL)
                 local VectorBL, OnScreenBL = Camera:WorldToScreenPoint(PartCorners.BL)
-          
+
                 if (OnScreenBL or OnScreenTL or OnScreenBR or OnScreenTR) and getgenv().Visibility and getgenv().boxESP then
                     Box.PointA = Vector2.new(VectorTR.X, VectorTR.Y + 36)
                     Box.PointB = Vector2.new(VectorTL.X, VectorTL.Y + 36)
@@ -114,7 +112,7 @@ local function DrawESP(plr)
                     else
                         Box.Color = Color3.fromHSV(math.clamp(Distance / 5, 0, 125) / 255, 0.75, 1)
                     end
-                    
+
                     Box.Thickness = math.clamp(3 - (Distance / 100), 0, 3)
                     --Box.Transparency = math.clamp((500 - Distance) / 200, 0.2, 1)
                     Box.Visible = true
@@ -151,7 +149,7 @@ UserInputService.InputBegan:Connect(function(Input, GP)
     if not GP and Input.KeyCode == Enum.KeyCode.Delete then
         getgenv().Visibility = not getgenv().Visibility
     end 
-    
+
     if not GP and Input.KeyCode == Enum.KeyCode.End then
         CycleFont()
     end
